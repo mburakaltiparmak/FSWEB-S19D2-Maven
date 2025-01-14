@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -304,7 +303,7 @@ class MainTest {
     @DisplayName("AccountService::findAll")
     void testFindAllAccount_AccountService() {
         when(mockAccountRepository.findAll()).thenReturn(Arrays.asList(sampleAccountForAccountServiceTest));
-        List<Account> result = accountService.findAll();
+        List<Account> result = accountService.getAccountList();
         assertEquals(1, result.size());
         assertEquals(sampleAccountForAccountServiceTest, result.get(0));
     }
@@ -313,7 +312,7 @@ class MainTest {
     @DisplayName("AccountService::find")
     void testFindAccount_AccountService() {
         when(mockAccountRepository.findById(1L)).thenReturn(Optional.of(sampleAccountForAccountServiceTest));
-        Account result = accountService.find(1L);
+        Account result = accountService.findAccountById(1L);
         assertEquals(sampleAccountForAccountServiceTest, result);
     }
 
@@ -346,7 +345,7 @@ class MainTest {
     @DisplayName("CustomerService::findAll")
     void testFindAllCustomer() {
         when(mockCustomerRepository.findAll()).thenReturn(Arrays.asList(sampleCustomerForCustomerServiceTest));
-        List<Customer> result = customerService.findAll();
+        List<Customer> result = customerService.getCustomersList();
         assertEquals(1, result.size());
         assertEquals(sampleCustomerForCustomerServiceTest, result.get(0));
     }
@@ -355,7 +354,7 @@ class MainTest {
     @DisplayName("CustomerService::find")
     void testFindCustomer() {
         when(mockCustomerRepository.findById(1L)).thenReturn(Optional.of(sampleCustomerForCustomerServiceTest));
-        Customer result = customerService.find(1L);
+        Customer result = customerService.findCustomerById(1L);
         assertEquals(sampleCustomerForCustomerServiceTest, result);
     }
 
